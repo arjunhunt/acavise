@@ -25,6 +25,7 @@ function updateUser(patch){
   users[i] = {...users[i], ...patch};
   saveUsers(users);
   DB.write(K.settings(me.id), users[i]);
+  schedulePush();
   return users[i];
 }
 function signup(email, pass, name){
@@ -61,7 +62,7 @@ function demoLogin(){
   DB.write(K.session, d.id);
   return d;
 }
-function logout(){ DB.del(K.session); location.hash = '#/'; }
+function logout(){ pushNow().catch(()=>{}).finally(()=>{ try{ if(isCloud()) window.__sb.auth.signOut(); }catch(e){} DB.del(K.session); location.hash = '#/'; }); }
 function getSubjects(uidv, sem){
   const all = DB.read(K.subjects(uidv), {});
   return all[String(sem)] || [];
@@ -75,17 +76,19 @@ function saveSubject(uidv, sem, sub){
   const i = all[k].findIndex(s=>s.id===sub.id);
   if(i>=0) all[k][i]=sub; else all[k].push(sub);
   DB.write(K.subjects(uidv), all);
+  schedulePush();
   return sub;
 }
 function deleteSubject(uidv, sem, id){
   const all = DB.read(K.subjects(uidv), {});
   all[String(sem)] = (all[String(sem)]||[]).filter(s=>s.id!==id);
   DB.write(K.subjects(uidv), all);
+  schedulePush();
 }
 function getPlan(uidv){ return DB.read(K.plan(uidv), []); }
-function savePlan(uidv, plan){ DB.write(K.plan(uidv), plan); }
+function savePlan(uidv, plan){ DB.write(K.plan(uidv), plan); schedulePush(); }
 function getDeadlines(uidv){ return DB.read(K.deadlines(uidv), []); }
-function saveDeadlines(uidv, d){ DB.write(K.deadlines(uidv), d); }
+function saveDeadlines(uidv, d){ DB.write(K.deadlines(uidv), d); schedulePush(); }
 
 function seedNewUser(idv, blank){
   if(DB.read(K.subjects(idv), null)) return;

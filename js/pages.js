@@ -70,19 +70,33 @@ function pageLogin(){
   <button class="btn ghost" style="width:100%;margin-top:10px" onclick="doDemo()">⚡ Instant Demo Mode</button>
   <p class="muted" style="margin-top:14px;text-align:center">New here? <span class="link" onclick="location.hash='#/signup'">Sign up</span> • <span class="link" onclick="location.hash='#/'">← Home</span></p></div></div>`;
 }
-function actSignup(){
+async function actSignup(){
   const n=document.getElementById('su-name').value.trim(), e=document.getElementById('su-email').value.trim();
   const p1=document.getElementById('su-p1').value, p2=document.getElementById('su-p2').value;
   if(!n) return toast('Enter your name','err');
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)) return toast('Enter a valid email','err');
   if(p1.length<6) return toast('Password needs 6+ characters','err');
   if(p1!==p2) return toast('Passwords do not match','err');
+  if(window.SUPABASE_URL && window.SUPABASE_ANON_KEY && window.supabase && window.__sb){
+    toast('Creating your cloud account…');
+    const r = await cloudSignup(e,p1,n);
+    if(r.error) return toast(r.error,'err');
+    toast('Account created — synced across devices ☁️'); location.hash='#/onboarding'; return;
+  }
   const r = signup(e,p1,n);
   if(r.error) return toast(r.error,'err');
   toast('Account created — complete your profile'); location.hash='#/onboarding';
 }
-function actLogin(){
+async function actLogin(){
   const e=document.getElementById('li-email').value, p=document.getElementById('li-pass').value;
+  if(window.SUPABASE_URL && window.SUPABASE_ANON_KEY && window.supabase && window.__sb){
+    toast('Logging you in…');
+    const r = await cloudLogin(e,p);
+    if(r.error) return toast(r.error,'err');
+    applyTheme();
+    location.hash = r.user.onboarded ? '#/dashboard' : '#/onboarding';
+    toast(`Welcome back, ${r.user.name.split(' ')[0]} — progress synced ☁️`); return;
+  }
   const r = login(e,p);
   if(r.error) return toast(r.error,'err');
   applyTheme();

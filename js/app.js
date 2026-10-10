@@ -39,8 +39,19 @@ function initReveal(){
   const o = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); o.unobserve(e.target);} }),{threshold:.1});
   els.forEach(el=>o.observe(el));
 }
+async function boot(){
+  if(window.SUPABASE_URL && window.SUPABASE_ANON_KEY && window.supabase){
+    try{
+      window.__sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+      document.getElementById('app').innerHTML = `<div class="auth-wrap"><div class="card auth-card" style="text-align:center"><img src="logo.png" class="brand-logo lg" style="margin:0 auto" alt="AcaVise"><h1 style="margin-top:12px">Signing you in…</h1><p class="muted">Syncing your academic cloud ☁️</p></div></div>`;
+      const { data } = await window.__sb.auth.getSession();
+      if(data && data.session){ try{ await ensureCloudUser(data.session.user); }catch(e){ console.warn(e); } }
+    }catch(e){ console.warn('cloud boot failed, local mode', e); }
+  }
+  applyTheme(); route(); initReveal();
+}
 window.addEventListener('hashchange', route);
 window.addEventListener('load', ()=>{
   if(!localStorage.getItem('acavise_theme')) localStorage.setItem('acavise_theme','dark');
-  route(); initReveal();
+  boot();
 });

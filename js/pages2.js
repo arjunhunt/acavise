@@ -185,7 +185,7 @@ function brain(qraw){
 /* ---- SETTINGS ---- */
 function pageSettings(){
   const u = currentUser();
-  return `<div class="page-head"><div><span class="pill blue">CONTROL CENTER</span><h1 style="margin-top:10px">Settings, Rules & Theme</h1><p>University rules drive every formula. Changes apply instantly everywhere.</p></div>
+  return `<div class="page-head"><div><span class="pill blue">CONTROL CENTER</span> ${isCloud()?'<span class="pill green">☁️ Cloud sync ON</span>':'<span class="pill amber">📱 This-browser storage</span>'}<h1 style="margin-top:10px">Settings, Rules & Theme</h1><p>University rules drive every formula. Changes apply instantly everywhere.</p></div>
   <button class="btn danger small" onclick="if(confirm('Sign out?')){logout()}">Sign out</button></div>
   <div class="grid g2">
     <div class="card"><h3>👤 Academic profile</h3>

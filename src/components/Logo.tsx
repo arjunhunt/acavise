@@ -4,9 +4,9 @@ import { cn } from "../lib/utils";
 export function Logo({ size = "md", link = true }: { size?: "md" | "lg"; link?: boolean }) {
   const img = (
     <img
-      src="logo-icon.png"
+      src="logo.png"
       alt="AcaVise"
-      className={cn("logo-ink aspect-square w-auto object-contain", size === "md" ? "h-10" : "h-14")}
+      className={cn("logo-ink w-auto rounded-[10px]", size === "md" ? "h-10" : "h-14 rounded-xl")}
     />
   );
   if (!link) return img;

@@ -1,51 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AcaVise — Academic Visibility & Progress Simulator</title>
-<link rel="icon" type="image/png" href="logo.png">
-<meta name="description" content="AcaVise answers: Where do I stand? What do I need? What to focus on? What to do today? SGPA/CGPA, target simulator, priority engine, planner, AI assistant.">
-<link rel="stylesheet" href="styles.css?v=2">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-<div id="bg-blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><div class="grid-overlay"></div></div>
-
-<!-- TOASTS -->
-<div id="toasts" aria-live="polite"></div>
-
-<!-- COMMAND PALETTE -->
-<div id="cmdk-backdrop" class="modal-backdrop hidden">
-  <div class="cmdk" role="dialog" aria-label="Search">
-    <div class="cmdk-input-row"><span class="cmdk-kbd-ico">⌘</span><input id="cmdk-input" placeholder="Search subjects, pages, deadlines… (try 'AOA' or 'planner')" autocomplete="off"><kbd>ESC</kbd></div>
-    <div id="cmdk-results" class="cmdk-results"></div>
-  </div>
-</div>
-
-<!-- NOTIFICATION DRAWER -->
-<div id="notif-backdrop" class="modal-backdrop hidden">
-  <div class="notif-drawer" role="dialog" aria-label="Notifications">
-    <div class="notif-head"><div><h3>Notifications</h3><p id="notif-sub">Stay ahead of deadlines</p></div><button class="icon-btn" data-close-notif>✕</button></div>
-    <div id="notif-list" class="notif-list"></div>
-  </div>
-</div>
-
-<!-- GENERIC MODAL -->
-<div id="modal-backdrop" class="modal-backdrop hidden"><div id="modal-box" class="modal-box" role="dialog"></div></div>
-
-<!-- APP ROOT -->
-<div id="app"></div>
-
-<script src="js/sb-config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/store.js"></script>
-<script src="js/calc.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/cloud.js"></script>
-<script src="js/pages.js"></script>
-<script src="js/pages2.js"></script>
-<script src="js/app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AcaVise — Academic Visibility &amp; Progress Simulator</title>
+    <meta name="description" content="AcaVise answers: where do I stand, what do I need, what to focus on, what to do today. Live SGPA/CGPA, target simulator, priority engine, planner, AI assistant." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="./assets/index-9-oCznOm.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BfGQhc9f.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

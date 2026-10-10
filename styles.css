@@ -227,6 +227,32 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:12px}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
 .reveal.vis{opacity:1;transform:none}
 .count-flash{transition:color .3s}
+img{max-width:100%}
+
+/* ============ Phone refinements (no function changes, layout only) ============ */
+.chat-input-row{display:flex;gap:10px}
+@media(max-width:640px){
+  .topbar{padding:10px 12px;gap:8px}
+  .topbar select{max-width:106px;padding:8px;font-size:12.5px;flex:none}
+  .search-trigger{flex:none;width:38px;height:38px;padding:0;justify-content:center;border-radius:11px}
+  .search-trigger .st-text,.search-trigger kbd{display:none}
+  .icon-btn{width:38px;height:38px;flex:none}
+  .tbl{min-width:560px}
+  .chat-input-row{flex-direction:column}
+  .chat-input-row .btn{width:100%}
+  #toasts{left:12px;right:12px;bottom:78px}
+  .toast{max-width:none;width:100%}
+  .notif-drawer{margin:0;width:100%;max-width:none}
+  .modal-box{padding:18px}
+  .hero-cta .btn{width:100%}
+  .profile-menu-wrap .dropdown{position:fixed;top:64px;left:12px;right:12px;width:auto}
+  .cmdk{margin-top:4vh}
+  .page-head h1{font-size:25px}
+}
+@media(max-width:860px){
+  .inp,select.inp,textarea.inp{font-size:16px}
+  .auth-wrap{min-height:100vh;min-height:100dvh}
+}
 
 @media(max-width:1080px){.g4{grid-template-columns:repeat(2,1fr)}.q-grid{grid-template-columns:repeat(2,1fr)}.feat-grid{grid-template-columns:repeat(2,1fr)}.week-grid{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:860px){

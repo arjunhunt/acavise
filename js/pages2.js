@@ -130,7 +130,7 @@ function pageAI(q){
   <p>Knows your ${subs.length} subjects, scores, attendance, target ${Number(u.targetCgpa).toFixed(2)} and #1 priority${top?` (<b>${top.code}</b>)`:''}. Rule-based engine — instant, offline, explainable.</p></div></div>
   <div class="card"><div class="chat-box" id="chat"></div>
     <div style="margin:12px 0">${pills.map(p=>`<span class="prompt-chip" onclick="aiAsk('${p.replace(/'/g,"\\'")}')">${p}</span>`).join('')}</div>
-    <div style="display:flex;gap:10px"><input id="ai-inp" class="inp" placeholder="Ask anything — e.g. 'What do I need in CS501 for an A?' " onkeydown="if(event.key==='Enter')aiSend()"><button class="btn" onclick="aiSend()">Send ➤</button></div></div>
+    <div class="chat-input-row"><input id="ai-inp" class="inp" placeholder="Ask anything — e.g. 'What do I need in CS501 for an A?' " onkeydown="if(event.key==='Enter')aiSend()"><button class="btn" onclick="aiSend()">Send ➤</button></div></div>
   <div class="card" style="margin-top:14px"><h3>🧠 What the assistant sees</h3><p class="muted">${subs.map(s=>`${s.code} ${s.score}%/${s.attendance}%`).join(' • ')||'No subjects yet.'} | CGPA ${u.currentCgpa} → ${u.targetCgpa} | Cutoff ${u.cutoff}% | ${u.intW}/${u.endW}</p></div>`;
 }
 function aiInit(prefill){

@@ -70,7 +70,7 @@ function shell(active, inner){
   <div class="main">
     <div class="topbar">
       <select onchange="switchSem(this.value)" title="Global semester switcher">${[1,2,3,4,5,6,7,8].map(s=>`<option value="${s}" ${s==u.sem?'selected':''}>Sem ${s}</option>`).join('')}</select>
-      <div class="search-trigger" onclick="openSearch()">🔍 Search subjects, pages… <kbd>Ctrl K</kbd></div>
+      <div class="search-trigger" onclick="openSearch()">🔍<span class="st-text">Search subjects, pages…</span> <kbd>Ctrl K</kbd></div>
       <button class="icon-btn" onclick="openNotifs()" title="Notifications">🔔${notifs.length?`<span class="badge-dot">${notifs.length}</span>`:''}</button>
       <div class="profile-menu-wrap"><button class="icon-btn" onclick="toggleProfile(event)" title="Profile">👤</button><div id="pm-anchor"></div></div>
     </div>
